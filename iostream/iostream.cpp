@@ -6,13 +6,15 @@
 #include<sstream>
 #include<vector>
 #include<memory.h>
-#include<streambuf>                   
+#include<streambuf>
+#include<locale>                   
 #include"student.h"
 using namespace std;
 
 
 int main(int argc, char const *argv[])
 {
+    /*
     //*********************************************std stream***********************************************    
     // stream link to std io channel, stdin/stdout/stderr
     // header<iostrem>
@@ -171,6 +173,13 @@ int main(int argc, char const *argv[])
     hexcout << "high precision: " << 3.14 << endl;
     cout << "default precision: " << 3.14 << endl;
 
+    */
+
+    locale lang_loc = locale();
+    cout << "name of default locale: " << lang_loc.name() << endl;
+
+    locale loc_zh_cn("zh-CN");
+    cout << "name of loc_zh_cn: " << loc_zh_cn.name() << endl;
 
     system("pause");
     return 0;

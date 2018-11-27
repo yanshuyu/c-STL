@@ -14,7 +14,7 @@ using namespace std;
 
 int main(int argc, char const *argv[])
 {
-    /*
+    
     //*********************************************std stream***********************************************    
     // stream link to std io channel, stdin/stdout/stderr
     // header<iostrem>
@@ -68,11 +68,11 @@ int main(int argc, char const *argv[])
     //header <fstrem>
     //read source file
     cout << endl << endl;
-    wifstream i_fd("iostream.cpp", ios::ate);
+    ifstream i_fd("iostream.cpp", ios::ate);
     if(i_fd){
         streampos pos = i_fd.tellg();
         i_fd.seekg(0, ios::beg);
-        wchar_t* read_buf = new wchar_t[pos];
+        char* read_buf = new char[pos];
         i_fd.read(read_buf, pos);
         cout << "content of iostream.cpp is: " << read_buf;
         delete[] read_buf;
@@ -155,11 +155,11 @@ int main(int argc, char const *argv[])
     //************************************************stream connecting and io redirection****************************************
     //connect stream buf: loose coupling or tight coupling
     
-    //loose coupling(æ¾è€¦åˆ), stream objects sync stream bufs
+    //loose coupling(ËÉñîºÏ), stream objects sync stream bufs
     //cin.tie(&cout);
     //wcin.tie(&wcout);
     
-    //tight coupling(ç´§è€¦åˆ), strem objects share strem buf
+    //tight coupling(½ôñîºÏ), strem objects share strem buf
     cout << endl << endl;
     ostream hexcout(cout.rdbuf());
     hexcout.setf(ios::hex, ios::basefield);
@@ -173,14 +173,14 @@ int main(int argc, char const *argv[])
     hexcout << "high precision: " << 3.14 << endl;
     cout << "default precision: " << 3.14 << endl;
 
-    */
-
+    
+    /*
     locale lang_loc = locale();
     cout << "name of default locale: " << lang_loc.name() << endl;
 
     locale loc_zh_cn("zh-CN");
     cout << "name of loc_zh_cn: " << loc_zh_cn.name() << endl;
-
+    */
     system("pause");
     return 0;
 }

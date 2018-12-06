@@ -14,7 +14,7 @@ using namespace std;
 
 int main(int argc, char const *argv[])
 {
-    
+    /*
     //*********************************************std stream***********************************************    
     // stream link to std io channel, stdin/stdout/stderr
     // header<iostrem>
@@ -172,15 +172,48 @@ int main(int argc, char const *argv[])
     hexcout.precision(8);
     hexcout << "high precision: " << 3.14 << endl;
     cout << "default precision: " << 3.14 << endl;
-
-    
-    /*
-    locale lang_loc = locale();
-    cout << "name of default locale: " << lang_loc.name() << endl;
-
-    locale loc_zh_cn("zh-CN");
-    cout << "name of loc_zh_cn: " << loc_zh_cn.name() << endl;
     */
-    system("pause");
+    
+    //***********************************************************internationaliztion***************************************************
+   	/*  encoding        code unit type          string type
+	utf-8               char                std::string
+	utf-16              char16_t            std::u16string
+	utf-32              char32_t            std::u32string
+
+	*/
+	const std::locale loc_c = std::locale::classic();
+	std::cout << "classic c locale: " << std::endl;
+	std::cout << "	name: " << loc_c.name() << std::endl;
+	std::cout << "	decimal point: " << std::use_facet<std::numpunct<char>>(loc_c).decimal_point() << std::endl;
+	std::cout << "	thousands sep: " << std::use_facet<std::numpunct<char>>(loc_c).thousands_sep() << std::endl;
+	std::cout << "	true name: " << std::use_facet<std::numpunct<char>>(loc_c).truename() << std::endl;
+	std::cout << "	false name: " << std::use_facet<std::numpunct<char>>(loc_c).falsename() << std::endl; 
+
+    //char type and convert
+    const std::ctype<char>& ct_f = std::use_facet<ctype<char>>(loc_c);
+    cout << "? is number: " << ct_f.is(ct_f.digit, '?') << endl;
+    cout << "? is alpha: " << ct_f.is(ct_f.alpha, '?') << endl;
+    cout << "? is punct: " << ct_f.is(ct_f.punct, '?') << endl;
+    cout << "a is upper: " << ct_f.is(ct_f.upper, 'a') << endl;
+    cout << "a to upper: " << ct_f.toupper('a') << endl;
+
+    //string to wstring
+    std::string l_s{"abcDEfgHijKLmN"};
+    std::wstring w_s;
+    std::vector<wchar_t> str_buf;
+    for(const auto& c : l_s){
+        w_s.push_back(std::use_facet<std::ctype<wchar_t>>(loc_c).widen(c));
+    }
+    //w_s.assign(str_buf.begin(), str_buf.end());
+    cout << "l_s: " << l_s << endl;
+    wcout << "w_s: " << w_s << endl;
+    for(auto& c : w_s){
+        c = std::use_facet<std::ctype<wchar_t>>(loc_c).toupper(c);
+    }
+    wcout << "w_s to upper: " << w_s << endl;
+
+
+ 	
+	system("pause");
     return 0;
 }

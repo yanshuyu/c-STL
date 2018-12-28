@@ -32,6 +32,10 @@
         "typeinfo": "cpp",
         "utility": "cpp",
         "codecvt": "cpp",
-        "cstring": "cpp"
+        "cstring": "cpp",
+        "bitset": "cpp",
+        "cmath": "cpp",
+        "deque": "cpp",
+        "memory": "cpp"
     }
 }

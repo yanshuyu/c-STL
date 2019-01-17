@@ -36,6 +36,8 @@
         "bitset": "cpp",
         "cmath": "cpp",
         "deque": "cpp",
-        "memory": "cpp"
+        "memory": "cpp",
+        "algorithm": "cpp",
+        "random": "cpp"
     }
 }
